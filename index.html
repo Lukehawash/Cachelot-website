@@ -516,6 +516,80 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             document.getElementById("animation-container").appendChild(renderer.domElement);
             
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cachelot - Sperm Donor Recruitment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #111;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #animation-container {
+            width: 100%;
+            height: 400px;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cachelot - Shaping the Future, One Donor at a Time</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#register">Become a Donor</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <footer>
+        <p>&copy; 2025 Cachelot. All rights reserved.</p>
+    </footer>
+    
+    <section id="animation-container"></section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, 400);
+            document.getElementById("animation-container").appendChild(renderer.domElement);
+            
             // Create Earth
             const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
             const earthMaterial = new THREE.MeshStandardMaterial({
@@ -551,8 +625,8 @@
             
             // Resize Handling
             window.addEventListener('resize', function() {
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                camera.aspect = window.innerWidth / window.innerHeight;
+                renderer.setSize(window.innerWidth, 400);
+                camera.aspect = window.innerWidth / 400;
                 camera.updateProjectionMatrix();
             });
         });
