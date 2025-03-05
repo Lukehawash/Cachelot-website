@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cachelot - Sperm Donor Recruitment</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,22 +33,11 @@
             text-decoration: none;
             font-weight: bold;
         }
-        #hero {
+        section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: auto;
             text-align: center;
-            padding: 100px 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         .cta-button {
             display: inline-block;
@@ -63,65 +53,18 @@
             background: #ddd;
             transform: scale(1.05);
         }
-        section {
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: #111;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        input, select, button {
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            background: #fff;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            transition: background 0.3s, transform 0.3s;
-        }
-        button:hover {
-            background: #ddd;
-            transform: scale(1.05);
-        }
         footer {
             text-align: center;
             padding: 20px;
             background: #111;
         }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-            section {
-                padding: 30px 15px;
-            }
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
-            form {
-                padding: 15px;
-            }
-            input, select, button {
-                font-size: 14px;
-            }
+        #animation-container {
+            width: 100%;
+            height: 400px;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -190,420 +133,26 @@
     <footer>
         <p>&copy; 2025 Cachelot. All rights reserved.</p>
     </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cachelot - Sperm Donor Recruitment</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #111;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        #map {
-            height: 500px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #fff;
-            color: #000;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .cta-button:hover {
-            background: #ddd;
-            transform: scale(1.05);
-        }
-        section {
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #111;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Cachelot - Shaping the Future, One Donor at a Time</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#register">Become a Donor</a></li>
-                <li><a href="#locations">Locations</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="locations">
-        <h2>Find a Cryobank Near You</h2>
-        <div id="map"></div>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 Cachelot. All rights reserved.</p>
-    </footer>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var map = L.map('map').setView([39.8283, -98.5795], 4); // Center of the US
-            
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-            
-            var locations = [
-                {lat: 38.9072, lng: -77.0369, name: "Washington, D.C.", url: "#apply-dc"},
-                {lat: 34.0522, lng: -118.2437, name: "Los Angeles, CA", url: "#apply-la"},
-                {lat: 40.7128, lng: -74.0060, name: "New York, NY", url: "#apply-ny"},
-                {lat: 41.8781, lng: -87.6298, name: "Chicago, IL", url: "#apply-chicago"},
-                {lat: 29.7604, lng: -95.3698, name: "Houston, TX", url: "#apply-houston"}
-            ];
-            
-            locations.forEach(function(location) {
-                var marker = L.marker([location.lat, location.lng]).addTo(map);
-                marker.bindPopup(`<h3>${location.name}</h3><a href="${location.url}" target="_blank">Apply Here</a>`);
-            });
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cachelot - Sperm Donor Recruitment</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #111;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        #animation-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background-color: black;
-            overflow: hidden;
-        }
-        #earth {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/1024px-World_map_blank_without_borders.svg.png') no-repeat center/cover;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: rotateEarth 10s linear infinite;
-        }
-        @keyframes rotateEarth {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        #whale {
-            position: absolute;
-            width: 80px;
-            height: 40px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Simple_Whale.svg/1024px-Simple_Whale.svg.png') no-repeat center/contain;
-            top: 30%;
-            left: 0;
-            animation: orbitWhale 8s linear infinite;
-        }
-        @keyframes orbitWhale {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(200px, 50px) rotate(90deg); }
-            50% { transform: translate(400px, 0) rotate(180deg); }
-            75% { transform: translate(200px, -50px) rotate(270deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-        #map {
-            height: 500px;
-            width: 100%;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Cachelot - Shaping the Future, One Donor at a Time</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#register">Become a Donor</a></li>
-                <li><a href="#locations">Locations</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="animation-container">
-        <div id="earth"></div>
-        <div id="whale"></div>
-    </section>
-    
-    <section id="locations">
-        <h2>Find a Cryobank Near You</h2>
-        <div id="map"></div>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 Cachelot. All rights reserved.</p>
-    </footer>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var map = L.map('map').setView([39.8283, -98.5795], 4);
-            
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-            
-            var locations = [
-                {lat: 38.9072, lng: -77.0369, name: "Washington, D.C.", url: "#apply-dc"},
-                {lat: 34.0522, lng: -118.2437, name: "Los Angeles, CA", url: "#apply-la"},
-                {lat: 40.7128, lng: -74.0060, name: "New York, NY", url: "#apply-ny"},
-                {lat: 41.8781, lng: -87.6298, name: "Chicago, IL", url: "#apply-chicago"},
-                {lat: 29.7604, lng: -95.3698, name: "Houston, TX", url: "#apply-houston"}
-            ];
-            
-            locations.forEach(function(location) {
-                var marker = L.marker([location.lat, location.lng]).addTo(map);
-                marker.bindPopup(`<h3>${location.name}</h3><a href="${location.url}" target="_blank">Apply Here</a>`);
-            });
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cachelot - Sperm Donor Recruitment</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@loaders.gl/core@3.2.6"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@loaders.gl/gltf@3.2.6"></script>
-    <style>
-        body {
-            font-family: monospace;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-            overflow: hidden;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #111;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        #animation-container {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            background-color: black;
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Cachelot - Shaping the Future, One Donor at a Time</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#register">Become a Donor</a></li>
-                <li><a href="#locations">Locations</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="animation-container"></section>
-    
-    <footer>
-        <p>&copy; 2025 Cachelot. All rights reserved.</p>
-    </footer>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById("animation-container").appendChild(renderer.domElement);
-            
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cachelot - Sperm Donor Recruitment</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        body {
-            font-family: monospace;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #111;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        #animation-container {
-            width: 100%;
-            height: 400px;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Cachelot - Shaping the Future, One Donor at a Time</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#register">Become a Donor</a></li>
-                <li><a href="#locations">Locations</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <footer>
-        <p>&copy; 2025 Cachelot. All rights reserved.</p>
-    </footer>
     
     <section id="animation-container"></section>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, 400);
             document.getElementById("animation-container").appendChild(renderer.domElement);
             
-            // Create Earth
             const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
-            const earthMaterial = new THREE.MeshStandardMaterial({
-                map: new THREE.TextureLoader().load('https://upload.wikimedia.org/wikipedia/commons/8/83/EarthMap1000x500.jpg')
-            });
+            const earthMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
             const earth = new THREE.Mesh(earthGeometry, earthMaterial);
             scene.add(earth);
             
-            // Create Light
             const light = new THREE.DirectionalLight(0xffffff, 1);
             light.position.set(5, 3, 5).normalize();
             scene.add(light);
             
-            // Create White 3D Whale
             const whaleGeometry = new THREE.TorusGeometry(0.2, 0.1, 16, 100);
             const whaleMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
             const whale = new THREE.Mesh(whaleGeometry, whaleMaterial);
@@ -611,10 +160,9 @@
             
             camera.position.z = 3;
             
-            // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
-                earth.rotation.y += 0.001; // 1 revolution per minute
+                earth.rotation.y += 0.001;
                 const time = Date.now() * 0.001;
                 whale.position.x = Math.cos(time) * 2;
                 whale.position.z = Math.sin(time) * 2;
@@ -623,7 +171,6 @@
             }
             animate();
             
-            // Resize Handling
             window.addEventListener('resize', function() {
                 renderer.setSize(window.innerWidth, 400);
                 camera.aspect = window.innerWidth / 400;
