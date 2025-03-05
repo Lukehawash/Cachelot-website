@@ -153,23 +153,23 @@
             light.position.set(5, 3, 5).normalize();
             scene.add(light);
             
-            const whaleGeometry = new THREE.TorusGeometry(0.2, 0.1, 16, 100);
-            const whaleMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
-            const whale = new THREE.Mesh(whaleGeometry, whaleMaterial);
-            scene.add(whale);
-            
-            camera.position.z = 3;
-            
-            function animate() {
-                requestAnimationFrame(animate);
-                earth.rotation.y += 0.001;
-                const time = Date.now() * 0.001;
-                whale.position.x = Math.cos(time) * 2;
-                whale.position.z = Math.sin(time) * 2;
-                whale.rotation.y += 0.01;
-                renderer.render(scene, camera);
-            }
-            animate();
+            const loader = new THREE.GLTFLoader();
+            loader.load('whale_model.glb', function(gltf) {
+                const whale = gltf.scene;
+                whale.scale.set(0.5, 0.5, 0.5);
+                scene.add(whale);
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    earth.rotation.y += 0.001;
+                    const time = Date.now() * 0.001;
+                    whale.position.x = Math.cos(time) * 2;
+                    whale.position.z = Math.sin(time) * 2;
+                    whale.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                }
+                animate();
+            });
             
             window.addEventListener('resize', function() {
                 renderer.setSize(window.innerWidth, 400);
