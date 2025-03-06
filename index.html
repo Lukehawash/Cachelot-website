@@ -1,182 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cachelot - Sperm Donor Recruitment</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #111;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        section {
-            padding: 50px 20px;
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #fff;
-            color: #000;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
-        }
-        .cta-button:hover {
-            background: #ddd;
-            transform: scale(1.05);
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #111;
-        }
-        #animation-container {
-            width: 100%;
-            height: 400px;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cachelot | Shaping the Future, One Donor at a Time</title>
+
+  <!-- Google Fonts: Orbitron (Futuristic) + Open Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #000; /* Black background */
+      color: #fff; /* White text */
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* GLOBAL CONTAINERS */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* NAVIGATION */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background-color: #000;
+      z-index: 999;
+      border-bottom: 1px solid #333;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .nav-links ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links li a:hover {
+      color: #ccc;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0 2rem;
+      background: #000;
+      text-align: center;
+    }
+    .hero-content {
+      max-width: 800px;
+    }
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+    .hero .cta-btn {
+      display: inline-block;
+      border: 2px solid #fff;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+    .hero .cta-btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* ABOUT SECTION */
+    #about {
+      background-color: #111;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #about h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    #about p {
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      color: #ccc;
+    }
+
+    /* HOW IT WORKS */
+    #how-it-works {
+      background-color: #000;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #how-it-works h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .step {
+      background-color: #111;
+      padding: 2rem;
+      border: 1px solid #333;
+      border-radius: 4px;
+      transition: transform 0.2s ease;
+    }
+    .step:hover {
+      transform: translateY(-5px);
+    }
+    .step h3 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+    }
+    .step p {
+      color: #ccc;
+    }
+
+    /* ELIGIBILITY QUIZ */
+    #eligibility {
+      background-color: #111;
+      padding: 4rem 2rem;
+    }
+    #eligibility h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    #quiz-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: left;
+      background-color: #000;
+      border: 1px solid #333;
+      padding: 2rem;
+      border-radius: 4px;
+    }
+    #quiz-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    #quiz-form input[type="text"],
+    #quiz-form input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.5rem;
+      color: #000;
+    }
+    #quiz-form button {
+      display: inline-block;
+      border: 2px solid #fff;
+      background: transparent;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+    #quiz-form button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+    #quiz-result {
+      margin-top: 1.5rem;
+      color: #0f0; /* greenish text for success */
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* CONTACT SECTION */
+    #contact {
+      background-color: #000;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #contact h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    #contact form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #contact form input,
+    #contact form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #333;
+      border-radius: 4px;
+      font-family: 'Open Sans', sans-serif;
+      color: #000;
+    }
+    #contact form button {
+      display: inline-block;
+      border: 2px solid #fff;
+      background: transparent;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+    #contact form button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #111;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    footer p {
+      color: #777;
+    }
+
+    /* SPACING FOR FIXED HEADER */
+    .spacer {
+      height: 80px; /* accounts for header height */
+    }
+
+    /* MEDIA QUERIES (Optional) */
+    @media screen and (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Cachelot - Shaping the Future, One Donor at a Time</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#register">Become a Donor</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="hero">
-        <h2>Do you have what it takes to be a donor?</h2>
-        <p>Earn up to $500 and help families achieve their dreams.</p>
-        <a href="#register" class="cta-button">Apply Now</a>
-    </section>
-    
-    <section id="about">
-        <h2>About Cachelot</h2>
-        <p>Cachelot is revolutionizing sperm donor recruitment through data-driven outreach and seamless donor connections.</p>
-    </section>
-    
-    <section id="how-it-works">
-        <h2>How It Works</h2>
-        <ol>
-            <li>Take a quick eligibility quiz.</li>
-            <li>Get matched with a local sperm bank.</li>
-            <li>Complete the donation process and receive compensation.</li>
-        </ol>
-    </section>
-    
-    <section id="register">
-        <h2>Become a Donor</h2>
-        <form id="donor-form">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+  <!-- HEADER & NAV -->
+  <header>
+    <nav class="container">
+      <div class="logo">CACHELOT</div>
+      <div class="nav-links">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#eligibility">Eligibility Quiz</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
+  <!-- Spacer to push content below fixed nav -->
+  <div class="spacer"></div>
 
-            <label for="education">Education Level:</label>
-            <select id="education" name="education">
-                <option value="high-school">High School</option>
-                <option value="bachelor">Bachelor's Degree</option>
-                <option value="master">Master's Degree</option>
-                <option value="phd">PhD</option>
-            </select>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Shaping the Future,<br> One Donor at a Time</h1>
+      <p>Join a nationwide platform that helps top fertility clinics connect with qualified donors.</p>
+      <a href="#eligibility" class="cta-btn">See If You Qualify</a>
+    </div>
+  </section>
 
-            <button type="submit">Submit Application</button>
-        </form>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:info@cachelot.com">info@cachelot.com</a></p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 Cachelot. All rights reserved.</p>
-    </footer>
-    
-    <section id="animation-container"></section>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize(window.innerWidth, 400);
-            document.getElementById("animation-container").appendChild(renderer.domElement);
-            
-            const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
-            const earthMaterial = new THREE.MeshStandardMaterial({ color: 0xaaaaaa });
-            const earth = new THREE.Mesh(earthGeometry, earthMaterial);
-            scene.add(earth);
-            
-            const light = new THREE.DirectionalLight(0xffffff, 1);
-            light.position.set(5, 3, 5).normalize();
-            scene.add(light);
-            
-            const loader = new THREE.GLTFLoader();
-            loader.load('whale_model.glb', function(gltf) {
-                const whale = gltf.scene;
-                whale.scale.set(0.5, 0.5, 0.5);
-                scene.add(whale);
-                
-                function animate() {
-                    requestAnimationFrame(animate);
-                    earth.rotation.y += 0.001;
-                    const time = Date.now() * 0.001;
-                    whale.position.x = Math.cos(time) * 2;
-                    whale.position.z = Math.sin(time) * 2;
-                    whale.rotation.y += 0.01;
-                    renderer.render(scene, camera);
-                }
-                animate();
-            });
-            
-            window.addEventListener('resize', function() {
-                renderer.setSize(window.innerWidth, 400);
-                camera.aspect = window.innerWidth / 400;
-                camera.updateProjectionMatrix();
-            });
-        });
-    </script>
+  <!-- ABOUT US SECTION -->
+  <section id="about">
+    <h2>About Cachelot</h2>
+    <p>
+      Founded by <strong>Luke Hawash</strong>, Cachelot is revolutionizing sperm donor recruitment through
+      data-driven strategies, AI-powered outreach, and seamless partnerships with the nation's
+      leading fertility clinics. Our mission is to make donor recruitment more accessible, efficient,
+      and transparent for everyone involved.
+    </p>
+    <p>
+      By combining big data with personalized outreach, we streamline the process for donors and
+      fertility centers alike—reducing wait times, optimizing lead quality, and ultimately shaping
+      the future of family building.
+    </p>
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps container">
+      <div class="step">
+        <h3>1. Identify</h3>
+        <p>We scrape and analyze data to find potential donors meeting key criteria: age, health, education, and more.</p>
+      </div>
+      <div class="step">
+        <h3>2. Outreach</h3>
+        <p>Our AI-driven system reaches out with personalized messaging—making the first step to donation simple and clear.</p>
+      </div>
+      <div class="step">
+        <h3>3. Sign Up</h3>
+        <p>Interested donors complete a quick online form and an eligibility quiz to confirm they fit the baseline requirements.</p>
+      </div>
+      <div class="step">
+        <h3>4. Referral</h3>
+        <p>Cachelot refers qualified donors to partner clinics for final testing and approval, ensuring a seamless transition.</p>
+      </div>
+      <div class="step">
+        <h3>5. Earn & Save Lives</h3>
+        <p>Donors receive compensation once approved—while helping families in need of healthy, reliable sperm donations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELIGIBILITY QUIZ SECTION -->
+  <section id="eligibility">
+    <h2>Check Your Eligibility</h2>
+    <form id="quiz-form">
+      <label for="age">Your Age</label>
+      <input type="number" id="age" name="age" placeholder="e.g. 25" />
+
+      <label for="height">Your Height (in cm)</label>
+      <input type="number" id="height" name="height" placeholder="e.g. 180" />
+
+      <label for="health">Describe Your Overall Health</label>
+      <input type="text" id="health" name="health" placeholder="e.g. Excellent" />
+
+      <button type="button" onclick="checkEligibility()">Submit</button>
+      <div id="quiz-result"></div>
+    </form>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Cachelot. All rights reserved.</p>
+  </footer>
+
+  <!-- BASIC JAVASCRIPT FOR ELIGIBILITY QUIZ -->
+  <script>
+    function checkEligibility() {
+      const age = document.getElementById("age").value;
+      const height = document.getElementById("height").value;
+      const health = document.getElementById("health").value.trim().toLowerCase();
+      const resultEl = document.getElementById("quiz-result");
+
+      // Basic example logic:
+      if(!age || !height || !health){
+        resultEl.style.color = "#f00";
+        resultEl.innerHTML = "Please fill out all fields.";
+        return;
+      }
+
+      if(age >= 18 && age <= 39 && height >= 165 && health === "excellent") {
+        resultEl.style.color = "#0f0";
+        resultEl.innerHTML = "You appear to meet our criteria! Please sign up for more details.";
+      } else {
+        resultEl.style.color = "#ff9900";
+        resultEl.innerHTML = 
+          "You may still be eligible, but please contact us or complete a full application for a thorough evaluation.";
+      }
+    }
+  </script>
 </body>
 </html>
