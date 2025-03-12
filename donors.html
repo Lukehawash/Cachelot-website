@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cachelot | Donors</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" 
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- HEADER / NAV -->
+  <header>
+    <nav class="container nav-bar">
+      <div class="logo-container">
+        <img src="cachelot-logo.png" alt="Cachelot Logo" class="logo-img"/>
+        <span class="logo-text">CACHELOT</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="donors.html" class="active">Donors</a></li>
+        <li><a href="banks.html">Banks</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="header-spacer"></div>
+
+  <!-- DONOR PAGE HERO -->
+  <section class="sub-hero donor-hero">
+    <div class="sub-hero-content">
+      <h1>Become a Donor</h1>
+      <p>
+        Make a meaningful impact on future families while earning extra income. 
+        At Cachelot, we elevate the donor experience and ensure you’re matched 
+        with the right clinic for a smooth, rewarding process.
+      </p>
+      <a href="#eligibility" class="cta-btn">Check Eligibility</a>
+    </div>
+  </section>
+
+  <!-- DONOR CONTENT -->
+  <section class="container donor-section">
+    <h2>Why Donate with Cachelot?</h2>
+    <p>
+      Our platform ensures your time is valued, your contribution is impactful, 
+      and your privacy is protected. Through rigorous data analysis and 
+      streamlined communication, we match you with partner clinics that 
+      offer top-tier facilities and compensation packages.
+    </p>
+  </section>
+
+  <!-- ELIGIBILITY QUIZ EXAMPLE -->
+  <section id="eligibility" class="container quiz-section">
+    <h2>Check Your Eligibility</h2>
+    <form id="donor-quiz" class="quiz-form" onsubmit="event.preventDefault(); checkDonorEligibility();">
+      <label for="age">Age</label>
+      <input type="number" id="age" placeholder="e.g. 25" required />
+
+      <label for="health">General Health (Excellent / Good / Fair)</label>
+      <input type="text" id="health" placeholder="e.g. Excellent" required />
+
+      <button type="submit" class="cta-btn">Submit</button>
+      <div class="quiz-result" id="donor-quiz-result"></div>
+    </form>
+  </section>
+
+  <!-- FAQ or NEXT STEPS -->
+  <section class="container donor-faq">
+    <h2>Next Steps</h2>
+    <p>
+      Once you pass the initial eligibility quiz, you’ll be invited to 
+      complete a more detailed application. Our team will guide you through 
+      each step—from medical screening to final approval—ensuring you have a 
+      clear understanding of the process and potential benefits.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Cachelot. All rights reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function checkDonorEligibility() {
+      const ageVal = document.getElementById("age").value;
+      const healthVal = document.getElementById("health").value.toLowerCase().trim();
+      const resultEl = document.getElementById("donor-quiz-result");
+
+      if (!ageVal || !healthVal) {
+        resultEl.style.color = "#f00";
+        resultEl.innerHTML = "Please fill in all fields.";
+        return;
+      }
+      
+      const ageNum = parseInt(ageVal, 10);
+      if (ageNum >= 18 && ageNum <= 39 && (healthVal === "excellent" || healthVal === "good")) {
+        resultEl.style.color = "#0f0";
+        resultEl.innerHTML = "Great news! You meet our initial criteria. Please proceed to the full application.";
+      } else {
+        resultEl.style.color = "#ff9900";
+        resultEl.innerHTML = 
+          "You may still be eligible, but please contact us for a comprehensive evaluation.";
+      }
+    }
+  </script>
+</body>
+</html>
