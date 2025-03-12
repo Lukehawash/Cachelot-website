@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cachelot | Banks</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" 
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- HEADER / NAV -->
+  <header>
+    <nav class="container nav-bar">
+      <div class="logo-container">
+        <img src="cachelot-logo.png" alt="Cachelot Logo" class="logo-img"/>
+        <span class="logo-text">CACHELOT</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="donors.html">Donors</a></li>
+        <li><a href="banks.html" class="active">Banks</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="header-spacer"></div>
+
+  <!-- BANKS PAGE HERO -->
+  <section class="sub-hero banks-hero">
+    <div class="sub-hero-content">
+      <h1>Partner with Cachelot</h1>
+      <p>
+        Let us handle the heavy lifting of donor recruitment so you can 
+        focus on delivering best-in-class fertility services. Our data-driven 
+        approach ensures a constant flow of qualified leads.
+      </p>
+      <a href="#roi-calculator" class="cta-btn">Calculate ROI</a>
+    </div>
+  </section>
+
+  <!-- BANKS INFO SECTION -->
+  <section class="container banks-section">
+    <h2>Elevated Donor Recruitment</h2>
+    <p>
+      By leveraging advanced data scraping, targeted outreach, and an 
+      AI-powered matching engine, Cachelot pre-screens prospective donors, 
+      guiding only the most suitable candidates to your clinic or bank. 
+      Say goodbye to unqualified leads, high acquisition costs, and 
+      time-intensive manual recruiting.
+    </p>
+  </section>
+
+  <!-- ROI CALCULATOR -->
+  <section id="roi-calculator" class="container roi-section">
+    <h2>ROI Calculator</h2>
+    <div class="roi-calc-form">
+      <label for="leads-needed">How many new donors do you need each month?</label>
+      <input type="number" id="leads-needed" placeholder="e.g. 30" />
+
+      <label for="conversion-rate">Typical Conversion Rate (%)</label>
+      <input type="number" id="conversion-rate" placeholder="e.g. 20" />
+
+      <button class="cta-btn" onclick="calculateBankROI()">Calculate</button>
+      <div class="roi-result" id="calc-result"></div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS / CONTACT CTA -->
+  <section class="container bank-contact-cta">
+    <h2>Ready to Partner?</h2>
+    <p>
+      Contact our team to discuss custom solutions, integration options, 
+      and how Cachelot can elevate your donor pool quality.
+    </p>
+    <a href="mailto:info@cachelot.com" class="cta-btn secondary-btn">Get in Touch</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Cachelot. All rights reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function calculateBankROI() {
+      const leadsNeeded = document.getElementById("leads-needed").value;
+      const conversion = document.getElementById("conversion-rate").value;
+      const resultEl = document.getElementById("calc-result");
+
+      if (!leadsNeeded || !conversion) {
+        resultEl.style.color = "#f00";
+        resultEl.textContent = "Please fill in both fields.";
+        return;
+      }
+
+      const leadsNum = parseInt(leadsNeeded, 10);
+      const convertNum = parseFloat(conversion);
+
+      // e.g., leads needed * cost or potential time saved
+      const approximateSavings = leadsNum * 50; // Example: $50 or 50 staff-minutes saved per lead
+
+      resultEl.style.color = "#0f0";
+      resultEl.innerHTML = 
+        `With an estimated ${leadsNum} donors/month at a ${convertNum}% conversion, 
+         you could save approximately $${approximateSavings} monthly by partnering with Cachelot.`;
+    }
+  </script>
+</body>
+</html>
