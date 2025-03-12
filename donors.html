@@ -24,6 +24,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="donors.html" class="active">Donors</a></li>
         <li><a href="banks.html">Banks</a></li>
+        <li><a href="register.html">Register</a></li>
       </ul>
     </nav>
   </header>
@@ -34,11 +35,12 @@
     <div class="sub-hero-content">
       <h1>Become a Donor</h1>
       <p>
-        Make a meaningful impact on future families while earning extra income. 
+        Make a meaningful impact on future families while earning extra income.
         At Cachelot, we elevate the donor experience and ensure you’re matched 
         with the right clinic for a smooth, rewarding process.
       </p>
-      <a href="#eligibility" class="cta-btn">Register</a>
+      <!-- UPDATED BUTTON: Direct link to register page -->
+      <a href="register.html" class="cta-btn">Register Now</a>
     </div>
   </section>
 
@@ -53,29 +55,14 @@
     </p>
   </section>
 
-  <!-- ELIGIBILITY QUIZ EXAMPLE -->
-  <section id="eligibility" class="container quiz-section">
-    <h2>Check Your Eligibility</h2>
-    <form id="donor-quiz" class="quiz-form" onsubmit="event.preventDefault(); checkDonorEligibility();">
-      <label for="age">Age</label>
-      <input type="number" id="age" placeholder="e.g. 25" required />
-
-      <label for="health">General Health (Excellent / Good / Fair)</label>
-      <input type="text" id="health" placeholder="e.g. Excellent" required />
-
-      <button type="submit" class="cta-btn">Submit</button>
-      <div class="quiz-result" id="donor-quiz-result"></div>
-    </form>
-  </section>
-
-  <!-- FAQ or NEXT STEPS -->
+  <!-- NEXT STEPS -->
   <section class="container donor-faq">
     <h2>Next Steps</h2>
     <p>
-      Once you pass the initial eligibility quiz, you’ll be invited to 
-      complete a more detailed application. Our team will guide you through 
-      each step—from medical screening to final approval—ensuring you have a 
-      clear understanding of the process and potential benefits.
+      Ready to get started? Simply <strong>register</strong> by clicking the button above. 
+      Once you complete the short form, our team will guide you through each step—from 
+      verifying your initial information to scheduling medical screenings—all while 
+      ensuring a respectful and efficient donor experience.
     </p>
   </section>
 
@@ -83,30 +70,5 @@
   <footer>
     <p>© 2025 Cachelot. All rights reserved.</p>
   </footer>
-
-  <!-- JAVASCRIPT -->
-  <script>
-    function checkDonorEligibility() {
-      const ageVal = document.getElementById("age").value;
-      const healthVal = document.getElementById("health").value.toLowerCase().trim();
-      const resultEl = document.getElementById("donor-quiz-result");
-
-      if (!ageVal || !healthVal) {
-        resultEl.style.color = "#f00";
-        resultEl.innerHTML = "Please fill in all fields.";
-        return;
-      }
-      
-      const ageNum = parseInt(ageVal, 10);
-      if (ageNum >= 18 && ageNum <= 39 && (healthVal === "excellent" || healthVal === "good")) {
-        resultEl.style.color = "#0f0";
-        resultEl.innerHTML = "Great news! You meet our initial criteria. Please proceed to the full application.";
-      } else {
-        resultEl.style.color = "#ff9900";
-        resultEl.innerHTML = 
-          "You may still be eligible, but please contact us for a comprehensive evaluation.";
-      }
-    }
-  </script>
 </body>
 </html>
