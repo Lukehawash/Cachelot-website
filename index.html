@@ -12,82 +12,6 @@
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" 
     rel="stylesheet"
   />
-
-  <style>
-    /* ADDITIONAL ANIMATION STYLES */
-    /* 
-      We place them here for demonstration. 
-      In production, consider moving these into styles.css 
-      to keep code organized.
-    */
-
-    /* Keyframes for fade/slide animations */
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    @keyframes slideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Class for a fade-in effect */
-    .fade-in {
-      opacity: 0; 
-      animation: fadeIn 1s forwards ease-in-out;
-    }
-
-    /* Class for a slide-up effect */
-    .slide-up {
-      opacity: 0;
-      animation: slideUp 1s forwards ease-in-out;
-    }
-
-    /* To stagger or control animation timing, 
-       you can use .fade-in.delay-1, .fade-in.delay-2, etc. */
-    .delay-1 {
-      animation-delay: 0.3s;
-    }
-    .delay-2 {
-      animation-delay: 0.6s;
-    }
-    .delay-3 {
-      animation-delay: 0.9s;
-    }
-
-    /* CTA hover effect enhancement */
-    .cta-btn {
-      /* Already declared in styles.css, 
-         but we can add a slight scale transition */
-      transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    }
-    .cta-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* Example for highlight grid items to fade up individually */
-    .highlight-item {
-      opacity: 0; 
-      transform: translateY(15px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .highlight-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Optional: you can do a subtle animation on the hero watermark */
-    .hero-watermark {
-      animation: fadeIn 1.5s forwards ease;
-      animation-delay: 0.5s;
-    }
-  </style>
 </head>
 <body>
   <!-- HEADER / NAV -->
@@ -110,27 +34,22 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-content">
-      <!-- We'll apply a slide-up animation to the hero heading and text -->
-      <h1 class="slide-up">Elevating Sperm Donation</h1>
-      <p class="slide-up delay-1">
+      <h1>Elevating Sperm Donation</h1>
+      <p>
         Join Cachelot in redefining the sperm donation process—where 
         quality, trust, and innovation meet. Whether you’re a donor looking 
         to make a difference or a bank seeking top-tier candidates, we’re 
         here to help you connect.
       </p>
-      <!-- Add a fade-in or slide-up to CTA buttons -->
-      <div class="slide-up delay-2">
-        <a href="donors.html" class="cta-btn">Become a Donor</a>
-        <a href="banks.html" class="cta-btn secondary-btn">Partner with Cachelot</a>
-      </div>
+      <a href="donors.html" class="cta-btn">Become a Donor</a>
+      <a href="banks.html" class="cta-btn secondary-btn">Partner with Cachelot</a>
     </div>
-    <!-- Optional watermark with a delayed fadeIn -->
+    <!-- Optional watermark -->
     <img src="cachelot-logo.png" alt="Cachelot Watermark" class="hero-watermark" />
   </section>
 
-  <!-- BRAND MISSION / HIGHLIGHTS 
-       We'll dynamically reveal each highlight item on scroll. -->
-  <section class="container highlights fade-in">
+  <!-- BRAND MISSION / HIGHLIGHTS -->
+  <section class="container highlights">
     <h2>Our Mission</h2>
     <p>
       Founded by <strong>Luke Hawash</strong>, Cachelot is on a mission to make sperm donation 
@@ -154,7 +73,7 @@
   </section>
 
   <!-- ABOUT / BRAND IDENTITY -->
-  <section class="about-section fade-in delay-1">
+  <section class="about-section">
     <div class="container">
       <h2>Redefining Donor Recruitment</h2>
       <p>
@@ -169,54 +88,5 @@
   <footer>
     <p>© 2025 Cachelot. All rights reserved.</p>
   </footer>
-
-  <!-- JS to animate sections on scroll using Intersection Observer -->
-  <script>
-    // Intersection Observer for fade/slide-in
-    // It will watch elements with .fade-in and .highlight-item classes
-    document.addEventListener("DOMContentLoaded", function() {
-      const fadeElements = document.querySelectorAll(".fade-in");
-      const highlightItems = document.querySelectorAll(".highlight-item");
-
-      // Observer options
-      const options = {
-        threshold: 0.1
-      };
-
-      // Create observer
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Trigger the fade-in/slide-in by adding the animation classes
-            entry.target.style.animationPlayState = 'running'; 
-            entry.target.style.opacity = 1;
-            // Stop observing once the element is visible
-            obs.unobserve(entry.target);
-          }
-        });
-      }, options);
-
-      // Observe .fade-in sections
-      fadeElements.forEach(el => {
-        // Initially set the animation-play-state to 'paused' in CSS or inline
-        el.style.animationPlayState = 'paused'; 
-        observer.observe(el);
-      });
-
-      // Another observer for highlight items (or you can reuse the same observer)
-      const itemObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            itemObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      highlightItems.forEach(item => {
-        itemObserver.observe(item);
-      });
-    });
-  </script>
 </body>
 </html>
