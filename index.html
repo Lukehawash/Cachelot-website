@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cachelot | Shaping the Future, One Donor at a Time</title>
-
+  
   <!-- Google Fonts: Orbitron (Futuristic) + Open Sans (Body) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" 
+    rel="stylesheet"
+  />
 
   <style>
     /* RESET & BASE STYLES */
     * {
-      margin: 0; padding: 0;
+      margin: 0; 
+      padding: 0;
       box-sizing: border-box;
     }
     body {
       font-family: 'Open Sans', sans-serif;
       background-color: #000; /* Black background */
-      color: #fff; /* White text */
+      color: #fff;           /* White text */
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
     img {
       max-width: 100%;
       height: auto;
+      display: block;
     }
     a {
       text-decoration: none;
       color: inherit;
     }
-    
-    /* GLOBAL CONTAINERS */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* CONTAINER UTILITY */
     .container {
       width: 90%;
       max-width: 1200px;
@@ -39,38 +49,56 @@
       padding: 2rem 0;
     }
 
-    /* NAVIGATION */
+    /* HEADER & NAV */
     header {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       background-color: #000;
-      z-index: 999;
+      z-index: 1000;
       border-bottom: 1px solid #333;
     }
     nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 1rem 2rem;
     }
-    .logo {
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-container img {
+      width: 40px; /* Adjust the size of the logo here */
+      height: auto;
+    }
+    .logo-text {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: 1px;
     }
     .nav-links ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
     }
+    .nav-links li a {
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
     .nav-links li a:hover {
-      color: #ccc;
+      color: #bbb;
+    }
+
+    /* STICKY HEADER SPACER */
+    .header-spacer {
+      height: 80px; /* Adjust based on header height */
     }
 
     /* HERO SECTION */
     .hero {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -78,189 +106,198 @@
       padding: 0 2rem;
       background: #000;
       text-align: center;
+      overflow: hidden;
     }
     .hero-content {
       max-width: 800px;
+      z-index: 1; /* Above the watermark */
     }
     .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      letter-spacing: 2px;
     }
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: #ccc;
     }
-    .hero .cta-btn {
+    .cta-btn {
       display: inline-block;
       border: 2px solid #fff;
       padding: 0.8rem 1.5rem;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
-    .hero .cta-btn:hover {
+    .cta-btn:hover {
       background-color: #fff;
       color: #000;
     }
 
-    /* ABOUT SECTION */
-    #about {
-      background-color: #111;
-      padding: 4rem 2rem;
-      text-align: center;
+    /* WATERMARK */
+    .hero-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.08; /* Very faint background */
+      width: 70%;
+      max-width: 600px;
+      pointer-events: none;
     }
-    #about h2 {
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 2rem;
+
+    /* SECTION TITLES */
+    section h2 {
       font-size: 2rem;
-      letter-spacing: 1px;
       text-transform: uppercase;
-    }
-    #about p {
-      max-width: 700px;
-      margin: 0 auto 2rem auto;
-      color: #ccc;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     /* HOW IT WORKS */
     #how-it-works {
-      background-color: #000;
+      background-color: #111;
       padding: 4rem 2rem;
-      text-align: center;
-    }
-    #how-it-works h2 {
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 3rem;
-      font-size: 2rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
     }
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
       max-width: 1000px;
       margin: 0 auto;
     }
     .step {
-      background-color: #111;
-      padding: 2rem;
+      background-color: #000;
       border: 1px solid #333;
       border-radius: 4px;
+      padding: 1.5rem;
       transition: transform 0.2s ease;
     }
     .step:hover {
       transform: translateY(-5px);
     }
     .step h3 {
-      font-family: 'Orbitron', sans-serif;
       margin-bottom: 1rem;
-      font-size: 1.25rem;
-      letter-spacing: 1px;
+      font-size: 1.2rem;
     }
     .step p {
       color: #ccc;
+      font-size: 0.95rem;
     }
 
-    /* ELIGIBILITY QUIZ */
-    #eligibility {
+    /* DONOR CENTER */
+    #donor-center {
+      background-color: #000;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .donor-content {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+      font-size: 1rem;
+    }
+    .quiz-container {
+      margin-top: 2rem;
+      background-color: #111;
+      border: 1px solid #333;
+      padding: 2rem;
+      border-radius: 4px;
+      text-align: left;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .quiz-container label {
+      display: block;
+      margin: 0.8rem 0 0.4rem 0;
+    }
+    .quiz-container input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    /* PARTNERS */
+    #partners {
       background-color: #111;
       padding: 4rem 2rem;
-    }
-    #eligibility h2 {
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      letter-spacing: 1px;
       text-align: center;
-      text-transform: uppercase;
     }
-    #quiz-form {
-      max-width: 600px;
-      margin: 2rem auto;
-      text-align: left;
+    #partners .partners-content {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+    .roi-calculator {
+      margin-top: 2rem;
       background-color: #000;
       border: 1px solid #333;
       padding: 2rem;
       border-radius: 4px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
-    #quiz-form label {
+    .roi-calculator label, .roi-calculator input {
       display: block;
-      margin-bottom: 0.5rem;
-      color: #fff;
+      margin-bottom: 1rem;
     }
-    #quiz-form input[type="text"],
-    #quiz-form input[type="number"] {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1.5rem;
-      color: #000;
-    }
-    #quiz-form button {
-      display: inline-block;
-      border: 2px solid #fff;
-      background: transparent;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      cursor: pointer;
-    }
-    #quiz-form button:hover {
-      background-color: #fff;
-      color: #000;
-    }
-    #quiz-result {
-      margin-top: 1.5rem;
-      color: #0f0; /* greenish text for success */
+    .roi-result {
+      margin-top: 1rem;
+      color: #0f0;
       font-family: 'Orbitron', sans-serif;
     }
 
-    /* CONTACT SECTION */
+    /* ABOUT */
+    #about {
+      background-color: #000;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #about .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+
+    /* TECH & DATA */
+    #tech {
+      background-color: #111;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    #tech .tech-content {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+
+    /* CONTACT */
     #contact {
       background-color: #000;
       padding: 4rem 2rem;
       text-align: center;
     }
-    #contact h2 {
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    #contact form {
-      max-width: 500px;
+    .contact-content {
+      max-width: 600px;
       margin: 0 auto;
+      color: #ccc;
     }
-    #contact form input,
-    #contact form textarea {
-      width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 1rem;
+    .contact-form {
+      background-color: #111;
       border: 1px solid #333;
+      padding: 2rem;
       border-radius: 4px;
-      font-family: 'Open Sans', sans-serif;
-      color: #000;
+      margin-top: 2rem;
     }
-    #contact form button {
-      display: inline-block;
-      border: 2px solid #fff;
-      background: transparent;
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      cursor: pointer;
-    }
-    #contact form button:hover {
-      background-color: #fff;
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.8rem;
       color: #000;
     }
 
@@ -269,18 +306,13 @@
       background-color: #111;
       text-align: center;
       padding: 1rem;
-      font-size: 0.9rem;
     }
     footer p {
+      font-size: 0.85rem;
       color: #777;
     }
 
-    /* SPACING FOR FIXED HEADER */
-    .spacer {
-      height: 80px; /* accounts for header height */
-    }
-
-    /* MEDIA QUERIES (Optional) */
+    /* MEDIA QUERIES */
     @media screen and (max-width: 768px) {
       .hero h1 {
         font-size: 2rem;
@@ -293,133 +325,222 @@
 </head>
 <body>
 
-  <!-- HEADER & NAV -->
+  <!-- HEADER -->
   <header>
-    <nav class="container">
-      <div class="logo">CACHELOT</div>
+    <nav>
+      <div class="logo-container">
+        <!-- Logo: adjust src path as needed -->
+        <img src="cachelot-logo.png" alt="Cachelot Logo" />
+        <div class="logo-text">CACHELOT</div>
+      </div>
       <div class="nav-links">
         <ul>
-          <li><a href="#about">About</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#eligibility">Eligibility Quiz</a></li>
+          <li><a href="#donor-center">Donors</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#tech">Tech & Data</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
   </header>
-
-  <!-- Spacer to push content below fixed nav -->
-  <div class="spacer"></div>
+  <div class="header-spacer"></div>
 
   <!-- HERO SECTION -->
   <section class="hero">
+    <!-- Watermark -->
+    <img src="cachelot-logo.png" alt="Logo Watermark" class="hero-watermark"/>
     <div class="hero-content">
-      <h1>Shaping the Future,<br> One Donor at a Time</h1>
-      <p>Join a nationwide platform that helps top fertility clinics connect with qualified donors.</p>
-      <a href="#eligibility" class="cta-btn">See If You Qualify</a>
+      <h1>Shaping the Future,<br> One Donor at a Time.</h1>
+      <p>Revolutionizing sperm donor recruitment with data-driven outreach and seamless clinic partnerships.</p>
+      <a href="#donor-center" class="cta-btn">Check Your Eligibility</a>
     </div>
   </section>
 
-  <!-- ABOUT US SECTION -->
-  <section id="about">
-    <h2>About Cachelot</h2>
-    <p>
-      Founded by <strong>Luke Hawash</strong>, Cachelot is revolutionizing sperm donor recruitment through
-      data-driven strategies, AI-powered outreach, and seamless partnerships with the nation's
-      leading fertility clinics. Our mission is to make donor recruitment more accessible, efficient,
-      and transparent for everyone involved.
-    </p>
-    <p>
-      By combining big data with personalized outreach, we streamline the process for donors and
-      fertility centers alike—reducing wait times, optimizing lead quality, and ultimately shaping
-      the future of family building.
-    </p>
-  </section>
-
-  <!-- HOW IT WORKS SECTION -->
+  <!-- HOW IT WORKS -->
   <section id="how-it-works">
     <h2>How It Works</h2>
     <div class="steps container">
       <div class="step">
         <h3>1. Identify</h3>
-        <p>We scrape and analyze data to find potential donors meeting key criteria: age, health, education, and more.</p>
+        <p>We leverage data scraping and analytics to find potential donors that match our core criteria (age, health, education).</p>
       </div>
       <div class="step">
         <h3>2. Outreach</h3>
-        <p>Our AI-driven system reaches out with personalized messaging—making the first step to donation simple and clear.</p>
+        <p>AI-driven messaging engages each prospect with personalized emails and DMs, making the donation process clear and accessible.</p>
       </div>
       <div class="step">
         <h3>3. Sign Up</h3>
-        <p>Interested donors complete a quick online form and an eligibility quiz to confirm they fit the baseline requirements.</p>
+        <p>Qualified individuals complete an online form, confirming basic eligibility and capturing key information.</p>
       </div>
       <div class="step">
         <h3>4. Referral</h3>
-        <p>Cachelot refers qualified donors to partner clinics for final testing and approval, ensuring a seamless transition.</p>
+        <p>We refer approved leads to partner clinics, handling the logistics and ensuring a seamless hand-off.</p>
       </div>
       <div class="step">
-        <h3>5. Earn & Save Lives</h3>
-        <p>Donors receive compensation once approved—while helping families in need of healthy, reliable sperm donations.</p>
+        <h3>5. Bonus & Impact</h3>
+        <p>Once a donor completes the clinic's approval, they earn a bonus while helping families in need worldwide.</p>
       </div>
     </div>
   </section>
 
-  <!-- ELIGIBILITY QUIZ SECTION -->
-  <section id="eligibility">
-    <h2>Check Your Eligibility</h2>
-    <form id="quiz-form">
-      <label for="age">Your Age</label>
-      <input type="number" id="age" name="age" placeholder="e.g. 25" />
+  <!-- DONOR CENTER -->
+  <section id="donor-center">
+    <h2>Become a Donor</h2>
+    <div class="donor-content container">
+      <p>
+        By donating sperm, you can make a meaningful impact on countless families while earning extra income.
+        Our streamlined process ensures quick approvals, transparent guidelines, and ongoing support. 
+      </p>
+      <p>
+        Check your eligibility with our quick quiz below. If you meet the initial criteria, you’ll be guided through the next steps, 
+        including medical screenings, clinic appointments, and final approval. 
+      </p>
 
-      <label for="height">Your Height (in cm)</label>
-      <input type="number" id="height" name="height" placeholder="e.g. 180" />
+      <!-- Eligibility Quiz -->
+      <div class="quiz-container">
+        <label for="quiz-age">Age</label>
+        <input type="number" id="quiz-age" placeholder="e.g. 25"/>
 
-      <label for="health">Describe Your Overall Health</label>
-      <input type="text" id="health" name="health" placeholder="e.g. Excellent" />
+        <label for="quiz-health">Overall Health (Excellent/Good/Fair)</label>
+        <input type="text" id="quiz-health" placeholder="e.g. Excellent"/>
 
-      <button type="button" onclick="checkEligibility()">Submit</button>
-      <div id="quiz-result"></div>
-    </form>
+        <label for="quiz-location">Location (City/State)</label>
+        <input type="text" id="quiz-location" placeholder="e.g. Austin, TX"/>
+
+        <button type="button" onclick="checkEligibility()" class="cta-btn">Submit</button>
+        <div id="quiz-result" style="margin-top:1rem;"></div>
+      </div>
+    </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- PARTNERS (CLINICS & CRYOBANKS) -->
+  <section id="partners">
+    <h2>Partners</h2>
+    <div class="partners-content container">
+      <p>
+        Cachelot provides sperm banks and fertility clinics with highly-qualified, pre-screened donor leads, 
+        reducing your recruitment costs and accelerating time to approval. Our AI-driven approach ensures a 
+        constant flow of potential donors, freeing you to focus on patient care.
+      </p>
+
+      <!-- ROI Calculator -->
+      <div class="roi-calculator">
+        <label for="avg-donors">Estimated Donors Needed Per Month</label>
+        <input type="number" id="avg-donors" placeholder="e.g. 20"/>
+
+        <label for="conversion-rate">Approx. Conversion Rate (%)</label>
+        <input type="number" id="conversion-rate" placeholder="e.g. 15"/>
+
+        <button type="button" class="cta-btn" onclick="calculateROI()">Calculate ROI</button>
+        <div class="roi-result" id="roi-result"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Cachelot</h2>
+    <div class="about-content container">
+      <p>
+        Founded by <strong>Luke Hawash</strong> in 2024, Cachelot aims to revolutionize the fertility industry 
+        with a simple yet powerful idea: connecting ideal donors with clinics nationwide via a seamless, 
+        technology-forward platform. Our mission is to reshape donor recruitment by integrating advanced 
+        data science, AI-driven outreach, and empathetic human touch. 
+      </p>
+      <p>
+        Whether you’re a potential donor or a clinic partner, Cachelot’s streamlined funnel, cutting-edge 
+        lead scoring, and nationwide reach ensure that everyone benefits from our data-driven innovation.
+      </p>
+    </div>
+  </section>
+
+  <!-- TECH & DATA -->
+  <section id="tech">
+    <h2>Tech & Data</h2>
+    <div class="tech-content container">
+      <p>
+        Our platform is built on secure cloud infrastructure, with integrated CRMs, advanced data-scraping 
+        algorithms, and large language models for personalized outreach. We employ industry-standard security 
+        protocols to ensure that sensitive data remains confidential and in compliance with relevant regulations. 
+      </p>
+      <p>
+        From automated follow-ups to user-friendly dashboards, Cachelot harnesses AI at every stage to optimize 
+        donor engagement and clinic workflow. The result? Higher conversion rates, satisfied donors, and a more 
+        efficient fertility industry.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <textarea rows="5" placeholder="Your Message"></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <div class="contact-content container">
+      <p>
+        Have questions about becoming a donor, partnering with Cachelot, or anything else? We’re here to help.
+        Fill out the form below or reach us at <strong>info@cachelot.com</strong>.
+      </p>
+      <div class="contact-form">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit" class="cta-btn">Send Message</button>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Cachelot. All rights reserved.</p>
+    <p>© 2025 Cachelot. All rights reserved. | Privacy Policy | Terms of Service</p>
   </footer>
 
-  <!-- BASIC JAVASCRIPT FOR ELIGIBILITY QUIZ -->
+  <!-- JAVASCRIPT -->
   <script>
     function checkEligibility() {
-      const age = document.getElementById("age").value;
-      const height = document.getElementById("height").value;
-      const health = document.getElementById("health").value.trim().toLowerCase();
+      const age = document.getElementById("quiz-age").value;
+      const health = document.getElementById("quiz-health").value.trim().toLowerCase();
+      const location = document.getElementById("quiz-location").value.trim();
       const resultEl = document.getElementById("quiz-result");
 
-      // Basic example logic:
-      if(!age || !height || !health){
+      if (!age || !health || !location) {
         resultEl.style.color = "#f00";
-        resultEl.innerHTML = "Please fill out all fields.";
+        resultEl.innerHTML = "Please fill in all fields.";
         return;
       }
 
-      if(age >= 18 && age <= 39 && height >= 165 && health === "excellent") {
+      // Very basic logic: Age 18-39, health = 'excellent' or 'good'
+      const ageNum = parseInt(age, 10);
+      if (ageNum >= 18 && ageNum <= 39 && (health === "excellent" || health === "good")) {
         resultEl.style.color = "#0f0";
-        resultEl.innerHTML = "You appear to meet our criteria! Please sign up for more details.";
+        resultEl.innerHTML = "You appear to meet our initial criteria! Please proceed to sign up.";
       } else {
         resultEl.style.color = "#ff9900";
         resultEl.innerHTML = 
-          "You may still be eligible, but please contact us or complete a full application for a thorough evaluation.";
+          "You may still be eligible, but please contact us directly for a full evaluation.";
       }
+    }
+
+    function calculateROI() {
+      const donorsNeeded = document.getElementById("avg-donors").value;
+      const conversion = document.getElementById("conversion-rate").value;
+      const roiEl = document.getElementById("roi-result");
+
+      if (!donorsNeeded || !conversion) {
+        roiEl.style.color = "#f00";
+        roiEl.innerHTML = "Please fill in all fields.";
+        return;
+      }
+
+      // Simple formula: leads needed = donorsNeeded / (conversion / 100)
+      const neededLeads = donorsNeeded / (parseFloat(conversion) / 100);
+      // Example of a per-lead cost or savings assumption
+      const costSavings = neededLeads * 50; // e.g., $50 saved per lead
+
+      roiEl.style.color = "#0f0";
+      roiEl.innerHTML =
+        `You may need approximately ${Math.ceil(neededLeads)} leads each month. 
+         Potential cost savings could be around $${Math.ceil(costSavings)} with our data-driven approach.`;
     }
   </script>
 </body>
