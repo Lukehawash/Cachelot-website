@@ -6,6 +6,7 @@
   <title>Cachelot | Shaping the Future, One Donor at a Time</title>
   
   <!-- Google Fonts: Orbitron (Futuristic) + Open Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" 
@@ -19,26 +20,47 @@
       padding: 0;
       box-sizing: border-box;
     }
+    
+    :root {
+      --primary-bg: #000;
+      --secondary-bg: #111;
+      --border-color: #333;
+      --text-color: #fff;
+      --text-muted: #ccc;
+      --text-dim: #777;
+      --success-color: #0f0;
+      --warning-color: #ff9900;
+      --error-color: #f00;
+    }
+    
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #000; /* Black background */
-      color: #fff;           /* White text */
+      background-color: var(--primary-bg);
+      color: var(--text-color);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       scroll-behavior: smooth;
     }
+    
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
+    
     a {
       text-decoration: none;
       color: inherit;
     }
+    
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
+    }
+    
+    button {
+      font-family: inherit;
+      cursor: pointer;
     }
 
     /* CONTAINER UTILITY */
@@ -54,46 +76,63 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      background-color: #000;
+      background-color: var(--primary-bg);
       z-index: 1000;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--border-color);
     }
+    
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
     }
+    
     .logo-container {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
+    
     .logo-container img {
-      width: 40px; /* Adjust the size of the logo here */
-      height: auto;
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
     }
+    
     .logo-text {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.2rem;
       font-weight: 700;
     }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
     .nav-links ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
     }
+    
     .nav-links li a {
       font-size: 0.95rem;
       transition: color 0.3s ease;
     }
+    
     .nav-links li a:hover {
-      color: #bbb;
+      color: var(--text-muted);
     }
 
     /* STICKY HEADER SPACER */
     .header-spacer {
-      height: 80px; /* Adjust based on header height */
+      height: 80px;
     }
 
     /* HERO SECTION */
@@ -104,35 +143,42 @@
       justify-content: center;
       min-height: 100vh;
       padding: 0 2rem;
-      background: #000;
+      background: var(--primary-bg);
       text-align: center;
       overflow: hidden;
     }
+    
     .hero-content {
       max-width: 800px;
-      z-index: 1; /* Above the watermark */
+      z-index: 1;
     }
+    
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
       margin-bottom: 1rem;
     }
+    
     .hero p {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 3vw, 1.2rem);
       margin-bottom: 2rem;
-      color: #ccc;
+      color: var(--text-muted);
     }
+    
     .cta-btn {
       display: inline-block;
-      border: 2px solid #fff;
+      border: 2px solid var(--text-color);
       padding: 0.8rem 1.5rem;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
       transition: all 0.3s ease;
       cursor: pointer;
+      background: transparent;
+      color: var(--text-color);
     }
+    
     .cta-btn:hover {
-      background-color: #fff;
-      color: #000;
+      background-color: var(--text-color);
+      color: var(--primary-bg);
     }
 
     /* WATERMARK */
@@ -141,7 +187,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      opacity: 0.08; /* Very faint background */
+      opacity: 0.08;
       width: 70%;
       max-width: 600px;
       pointer-events: none;
@@ -149,7 +195,7 @@
 
     /* SECTION TITLES */
     section h2 {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       text-transform: uppercase;
       margin-bottom: 2rem;
       text-align: center;
@@ -157,51 +203,58 @@
 
     /* HOW IT WORKS */
     #how-it-works {
-      background-color: #111;
-      padding: 4rem 2rem;
+      background-color: var(--secondary-bg);
+      padding: 4rem 1rem;
     }
+    
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
       max-width: 1000px;
       margin: 0 auto;
     }
+    
     .step {
-      background-color: #000;
-      border: 1px solid #333;
+      background-color: var(--primary-bg);
+      border: 1px solid var(--border-color);
       border-radius: 4px;
       padding: 1.5rem;
       transition: transform 0.2s ease;
     }
+    
     .step:hover {
       transform: translateY(-5px);
     }
+    
     .step h3 {
       margin-bottom: 1rem;
       font-size: 1.2rem;
     }
+    
     .step p {
-      color: #ccc;
+      color: var(--text-muted);
       font-size: 0.95rem;
     }
 
     /* DONOR CENTER */
     #donor-center {
-      background-color: #000;
-      padding: 4rem 2rem;
+      background-color: var(--primary-bg);
+      padding: 4rem 1rem;
       text-align: center;
     }
+    
     .donor-content {
       max-width: 800px;
       margin: 0 auto;
-      color: #ccc;
+      color: var(--text-muted);
       font-size: 1rem;
     }
-    .quiz-container {
+    
+    .form-container {
       margin-top: 2rem;
-      background-color: #111;
-      border: 1px solid #333;
+      background-color: var(--secondary-bg);
+      border: 1px solid var(--border-color);
       padding: 2rem;
       border-radius: 4px;
       text-align: left;
@@ -209,116 +262,166 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .quiz-container label {
+    
+    .form-container label {
       display: block;
       margin: 0.8rem 0 0.4rem 0;
+      color: var(--text-color);
     }
-    .quiz-container input {
+    
+    .form-container input,
+    .form-container textarea {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.75rem;
       margin-bottom: 1rem;
-      color: #000;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: #222;
+      color: var(--text-color);
+    }
+    
+    .form-container input::placeholder,
+    .form-container textarea::placeholder {
+      color: #666;
+    }
+    
+    .result-message {
+      margin-top: 1rem;
+      font-weight: 600;
     }
 
     /* PARTNERS */
     #partners {
-      background-color: #111;
-      padding: 4rem 2rem;
+      background-color: var(--secondary-bg);
+      padding: 4rem 1rem;
       text-align: center;
     }
+    
     #partners .partners-content {
       max-width: 800px;
       margin: 0 auto;
-      color: #ccc;
-    }
-    .roi-calculator {
-      margin-top: 2rem;
-      background-color: #000;
-      border: 1px solid #333;
-      padding: 2rem;
-      border-radius: 4px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-    .roi-calculator label, .roi-calculator input {
-      display: block;
-      margin-bottom: 1rem;
-    }
-    .roi-result {
-      margin-top: 1rem;
-      color: #0f0;
-      font-family: 'Orbitron', sans-serif;
+      color: var(--text-muted);
     }
 
     /* ABOUT */
     #about {
-      background-color: #000;
-      padding: 4rem 2rem;
+      background-color: var(--primary-bg);
+      padding: 4rem 1rem;
       text-align: center;
     }
+    
     #about .about-content {
       max-width: 800px;
       margin: 0 auto;
-      color: #ccc;
+      color: var(--text-muted);
+    }
+    
+    #about p {
+      margin-bottom: 1rem;
     }
 
     /* TECH & DATA */
     #tech {
-      background-color: #111;
-      padding: 4rem 2rem;
+      background-color: var(--secondary-bg);
+      padding: 4rem 1rem;
       text-align: center;
     }
+    
     #tech .tech-content {
       max-width: 800px;
       margin: 0 auto;
-      color: #ccc;
+      color: var(--text-muted);
+    }
+    
+    #tech p {
+      margin-bottom: 1rem;
     }
 
     /* CONTACT */
     #contact {
-      background-color: #000;
-      padding: 4rem 2rem;
+      background-color: var(--primary-bg);
+      padding: 4rem 1rem;
       text-align: center;
     }
+    
     .contact-content {
       max-width: 600px;
       margin: 0 auto;
-      color: #ccc;
-    }
-    .contact-form {
-      background-color: #111;
-      border: 1px solid #333;
-      padding: 2rem;
-      border-radius: 4px;
-      margin-top: 2rem;
-    }
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.8rem;
-      color: #000;
+      color: var(--text-muted);
     }
 
     /* FOOTER */
     footer {
-      background-color: #111;
+      background-color: var(--secondary-bg);
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
     }
+    
     footer p {
       font-size: 0.85rem;
-      color: #777;
+      color: var(--text-dim);
     }
 
     /* MEDIA QUERIES */
     @media screen and (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
+      .nav-toggle {
+        display: block;
       }
-      .hero p {
-        font-size: 1rem;
+      
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: var(--primary-bg);
+        border-bottom: 1px solid var(--border-color);
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+      }
+      
+      .nav-links.active {
+        height: auto;
+        padding: 1rem 0;
+      }
+      
+      .nav-links ul {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 2rem;
+      }
+      
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .nav-links li a {
+        display: block;
+        padding: 0.5rem 0;
+      }
+      
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-container {
+        padding: 1.5rem;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .hero {
+        padding: 0 1rem;
+      }
+      
+      .cta-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      
+      .form-container {
+        padding: 1rem;
       }
     }
   </style>
@@ -329,10 +432,18 @@
   <header>
     <nav>
       <div class="logo-container">
-        <!-- Logo: adjust src path as needed -->
-        <img src="cachelot-logo.png" alt="Cachelot Logo" />
+        <!-- Fallback SVG placeholder for logo -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="white" stroke-width="2"/>
+          <path d="M15 15C15 12.7909 16.7909 11 19 11H21C23.2091 11 25 12.7909 25 15V25C25 27.2091 23.2091 29 21 29H19C16.7909 29 15 27.2091 15 25V15Z" stroke="white" stroke-width="2"/>
+          <path d="M10 17H15" stroke="white" stroke-width="2"/>
+          <path d="M10 23H15" stroke="white" stroke-width="2"/>
+          <path d="M25 17H30" stroke="white" stroke-width="2"/>
+          <path d="M25 23H30" stroke="white" stroke-width="2"/>
+        </svg>
         <div class="logo-text">CACHELOT</div>
       </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
       <div class="nav-links">
         <ul>
           <li><a href="#how-it-works">How It Works</a></li>
@@ -350,7 +461,16 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <!-- Watermark -->
-    <img src="cachelot-logo.png" alt="Logo Watermark" class="hero-watermark"/>
+    <svg class="hero-watermark" width="600" height="600" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="18" stroke="white" stroke-width="2"/>
+      <path d="M15 15C15 12.7909 16.7909 11 19 11H21C23.2091 11 25 12.7909 25 15V25C25 27.2091 23.2091 29 21 29H19C16.7
+<circle cx="20" cy="20" r="18" stroke="white" stroke-width="2"/>
+      <path d="M15 15C15 12.7909 16.7909 11 19 11H21C23.2091 11 25 12.7909 25 15V25C25 27.2091 23.2091 29 21 29H19C16.7909 29 15 27.2091 15 25V15Z" stroke="white" stroke-width="2"/>
+      <path d="M10 17H15" stroke="white" stroke-width="2"/>
+      <path d="M10 23H15" stroke="white" stroke-width="2"/>
+      <path d="M25 17H30" stroke="white" stroke-width="2"/>
+      <path d="M25 23H30" stroke="white" stroke-width="2"/>
+    </svg>
     <div class="hero-content">
       <h1>Shaping the Future,<br> One Donor at a Time.</h1>
       <p>Revolutionizing sperm donor recruitment with data-driven outreach and seamless clinic partnerships.</p>
@@ -394,23 +514,23 @@
         Our streamlined process ensures quick approvals, transparent guidelines, and ongoing support. 
       </p>
       <p>
-        Check your eligibility with our quick quiz below. If you meet the initial criteria, you’ll be guided through the next steps, 
+        Check your eligibility with our quick quiz below. If you meet the initial criteria, you'll be guided through the next steps, 
         including medical screenings, clinic appointments, and final approval. 
       </p>
 
       <!-- Eligibility Quiz -->
-      <div class="quiz-container">
+      <div class="form-container">
         <label for="quiz-age">Age</label>
-        <input type="number" id="quiz-age" placeholder="e.g. 25"/>
+        <input type="number" id="quiz-age" placeholder="e.g. 25" aria-label="Enter your age"/>
 
         <label for="quiz-health">Overall Health (Excellent/Good/Fair)</label>
-        <input type="text" id="quiz-health" placeholder="e.g. Excellent"/>
+        <input type="text" id="quiz-health" placeholder="e.g. Excellent" aria-label="Enter your health status"/>
 
         <label for="quiz-location">Location (City/State)</label>
-        <input type="text" id="quiz-location" placeholder="e.g. Magrathea, TX"/>
+        <input type="text" id="quiz-location" placeholder="e.g. Austin, TX" aria-label="Enter your location"/>
 
-        <button type="button" onclick="checkEligibility()" class="cta-btn">Submit</button>
-        <div id="quiz-result" style="margin-top:1rem;"></div>
+        <button type="button" class="cta-btn" id="check-eligibility">Submit</button>
+        <div id="quiz-result" class="result-message"></div>
       </div>
     </div>
   </section>
@@ -426,15 +546,15 @@
       </p>
 
       <!-- ROI Calculator -->
-      <div class="roi-calculator">
+      <div class="form-container">
         <label for="avg-donors">Estimated Donors Needed Per Month</label>
-        <input type="number" id="avg-donors" placeholder="e.g. 20"/>
+        <input type="number" id="avg-donors" placeholder="e.g. 20" aria-label="Enter estimated donors needed"/>
 
         <label for="conversion-rate">Approx. Conversion Rate (%)</label>
-        <input type="number" id="conversion-rate" placeholder="e.g. 15"/>
+        <input type="number" id="conversion-rate" placeholder="e.g. 15" aria-label="Enter conversion rate percentage"/>
 
-        <button type="button" class="cta-btn" onclick="calculateROI()">Calculate ROI</button>
-        <div class="roi-result" id="roi-result"></div>
+        <button type="button" class="cta-btn" id="calculate-roi">Calculate ROI</button>
+        <div id="roi-result" class="result-message"></div>
       </div>
     </div>
   </section>
@@ -450,7 +570,7 @@
         data science, AI-driven outreach, and empathetic human touch. 
       </p>
       <p>
-        Whether you’re a potential donor or a clinic partner, Cachelot’s streamlined funnel, cutting-edge 
+        Whether you're a potential donor or a clinic partner, Cachelot's streamlined funnel, cutting-edge 
         lead scoring, and nationwide reach ensure that everyone benefits from our data-driven innovation.
       </p>
     </div>
@@ -478,13 +598,13 @@
     <h2>Contact Us</h2>
     <div class="contact-content container">
       <p>
-        Have questions about becoming a donor, partnering with Cachelot, or anything else? We’re here to help.
-        Fill out the form below or reach us at <strong>info@cachelot.co</strong>.
+        Have questions about becoming a donor, partnering with Cachelot, or anything else? We're here to help.
+        Fill out the form below or reach us at <strong>info@cachelot.com</strong>.
       </p>
-      <div class="contact-form">
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email Address" required />
-        <textarea rows="5" placeholder="Your Message"></textarea>
+      <div class="form-container">
+        <input type="text" placeholder="Full Name" required aria-label="Enter your full name"/>
+        <input type="email" placeholder="Email Address" required aria-label="Enter your email address"/>
+        <textarea rows="5" placeholder="Your Message" aria-label="Enter your message"></textarea>
         <button type="submit" class="cta-btn">Send Message</button>
       </div>
     </div>
@@ -492,11 +612,54 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Cachelot. All rights reserved. | Privacy Policy | Terms of Service</p>
+    <p>© 2025 Cachelot. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
   </footer>
 
   <!-- JAVASCRIPT -->
   <script>
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      
+      navToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+      
+      // Close mobile menu when clicking on a nav link
+      const links = document.querySelectorAll('.nav-links a');
+      links.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('active');
+        });
+      });
+      
+      // Eligibility quiz
+      document.getElementById('check-eligibility').addEventListener('click', checkEligibility);
+      
+      // ROI calculator
+      document.getElementById('calculate-roi').addEventListener('click', calculateROI);
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+
     function checkEligibility() {
       const age = document.getElementById("quiz-age").value;
       const health = document.getElementById("quiz-health").value.trim().toLowerCase();
@@ -504,20 +667,19 @@
       const resultEl = document.getElementById("quiz-result");
 
       if (!age || !health || !location) {
-        resultEl.style.color = "#f00";
-        resultEl.innerHTML = "Please fill in all fields.";
+        resultEl.style.color = "var(--error-color)";
+        resultEl.textContent = "Please fill in all fields.";
         return;
       }
 
       // Very basic logic: Age 18-39, health = 'excellent' or 'good'
       const ageNum = parseInt(age, 10);
       if (ageNum >= 18 && ageNum <= 39 && (health === "excellent" || health === "good")) {
-        resultEl.style.color = "#0f0";
-        resultEl.innerHTML = "You appear to meet our initial criteria! Please proceed to sign up.";
+        resultEl.style.color = "var(--success-color)";
+        resultEl.textContent = "You appear to meet our initial criteria! Please proceed to sign up.";
       } else {
-        resultEl.style.color = "#ff9900";
-        resultEl.innerHTML = 
-          "You may still be eligible, but please contact us directly for a full evaluation.";
+        resultEl.style.color = "var(--warning-color)";
+        resultEl.textContent = "You may still be eligible, but please contact us directly for a full evaluation.";
       }
     }
 
@@ -527,20 +689,19 @@
       const roiEl = document.getElementById("roi-result");
 
       if (!donorsNeeded || !conversion) {
-        roiEl.style.color = "#f00";
-        roiEl.innerHTML = "Please fill in all fields.";
+        roiEl.style.color = "var(--error-color)";
+        roiEl.textContent = "Please fill in all fields.";
         return;
       }
 
       // Simple formula: leads needed = donorsNeeded / (conversion / 100)
-      const neededLeads = donorsNeeded / (parseFloat(conversion) / 100);
+      const conversionRate = parseFloat(conversion) / 100;
+      const neededLeads = Math.ceil(donorsNeeded / conversionRate);
       // Example of a per-lead cost or savings assumption
-      const costSavings = neededLeads * 50; // e.g., $50 saved per lead
+      const costSavings = Math.ceil(neededLeads * 50); // e.g., $50 saved per lead
 
-      roiEl.style.color = "#0f0";
-      roiEl.innerHTML =
-        `You may need approximately ${Math.ceil(neededLeads)} leads each month. 
-         Potential cost savings could be around $${Math.ceil(costSavings)} with our data-driven approach.`;
+      roiEl.style.color = "var(--success-color)";
+      roiEl.textContent = `You may need approximately ${neededLeads} leads each month. Potential cost savings could be around $${costSavings} with our data-driven approach.`;
     }
   </script>
 </body>
