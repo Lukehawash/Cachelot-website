@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cachelot | Register</title>
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" 
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- HEADER / NAV -->
+  <header>
+    <nav class="container nav-bar">
+      <div class="logo-container">
+        <img src="cachelot-logo.png" alt="Cachelot Logo" class="logo-img"/>
+        <span class="logo-text">CACHELOT</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="donors.html">Donors</a></li>
+        <li><a href="banks.html">Banks</a></li>
+        <li><a href="register.html" class="active">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="header-spacer"></div>
+
+  <!-- REGISTER PAGE HERO -->
+  <section class="sub-hero" style="background-color: #111;">
+    <div class="sub-hero-content">
+      <h1>Register as a Donor</h1>
+      <p>
+        Complete the short form below to begin your journey as a potential sperm donor. 
+        Cachelot values your privacy and ensures a respectful, streamlined process for all applicants.
+      </p>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORM SECTION -->
+  <section class="container" style="text-align: center;">
+    <h2>Donor Registration Questionnaire</h2>
+    <p style="max-width: 700px; margin: 0 auto 2rem; color: #ccc;">
+      Please provide accurate information. We use these details to match you with the best-fit clinics and ensure a smooth screening process.
+    </p>
+    
+    <form id="registration-form" class="quiz-form" onsubmit="event.preventDefault(); submitRegistration();">
+      <!-- Name -->
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" placeholder="e.g. John" required />
+
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required />
+
+      <!-- Contact Info -->
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="e.g. john@example.com" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="e.g. 555-555-5555" required />
+
+      <!-- Location & Age -->
+      <label for="location">City / State</label>
+      <input type="text" id="location" name="location" placeholder="e.g. Austin, TX" required />
+
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" placeholder="e.g. 25" required />
+
+      <!-- Health & Background -->
+      <label for="health">General Health (Excellent / Good / Fair / Other)</label>
+      <input type="text" id="health" name="health" placeholder="e.g. Excellent" required />
+
+      <label for="education">Highest Level of Education</label>
+      <input type="text" id="education" name="education" placeholder="e.g. Bachelor's Degree" required />
+
+      <!-- Additional Info / Comments (Optional) -->
+      <label for="additionalInfo">Additional Info or Comments</label>
+      <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="Anything else you'd like us to know..."></textarea>
+
+      <!-- Disclaimer / Consent -->
+      <div style="margin: 1rem 0;">
+        <input type="checkbox" id="consent" name="consent" required />
+        <label for="consent" style="display: inline;"> 
+          I agree to provide accurate information and understand Cachelot’s privacy policy.
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="cta-btn">Submit Registration</button>
+      <div class="quiz-result" id="registration-result"></div>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Cachelot. All rights reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function submitRegistration() {
+      const resultEl = document.getElementById("registration-result");
+      // In a real app, you'd send this form data to a server using fetch/AJAX
+      // For demo, we'll just show a success message
+
+      // Basic Validation Check
+      const requiredFields = [
+        "firstName", "lastName", "email", "phone", 
+        "location", "age", "health", "education", "consent"
+      ];
+
+      for (let fieldId of requiredFields) {
+        const field = document.getElementById(fieldId);
+        if (!field || !field.value.trim()) {
+          resultEl.style.color = "#f00";
+          resultEl.textContent = "Please fill in all required fields.";
+          return;
+        }
+      }
+
+      // Show success
+      resultEl.style.color = "#0f0";
+      resultEl.textContent = "Thank you for registering! Our team will review your information and follow up soon.";
+      
+      // Clear form fields (optional)
+      document.getElementById("registration-form").reset();
+    }
+  </script>
+</body>
+</html>
