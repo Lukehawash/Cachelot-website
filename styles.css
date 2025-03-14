@@ -272,5 +272,50 @@ footer p {
   }
   .hero p, .sub-hero p {
     font-size: 1rem;
+    /* added from grok */
+    /* Hamburger menu styling */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #fff; /* Adjust color as needed */
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Visible on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Hidden by default on mobile */
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    left: 0;
+    background: #333; /* Adjust background */
+  }
+
+  .nav-links.active {
+    display: flex; /* Shown when hamburger clicked */
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
   }
 }
