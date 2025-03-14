@@ -315,6 +315,16 @@ footer p {
     width: 100%;
     text-align: center;
     padding: 10px 0;
+    .logo-separator {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.separator-logo {
+  max-width: 200px; /* Adjust size as needed */
+  height: auto;
+  filter: none; /* Ensures no fading */
+}
   }
 }
   }
