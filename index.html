@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cachelot connects top-tier sperm donors with leading sperm banks using innovative, data-driven recruitment." />
+  <title>Cachelot | Elevated Sperm Donation</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- HEADER / NAV -->
+  <header class="sticky-nav">
+    <nav class="container nav-bar">
+      <div class="logo-container">
+        <a href="index.html" aria-label="Cachelot Home">
+          <img src="cachelot-logo.png" alt="Cachelot Logo" class="logo-img" />
+          <span class="logo-text">CACHELOT</span>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="donors.html">Donors</a></li>
+        <li><a href="banks.html">Banks</a></li>
+        <li><a href="register.html" class="cta-nav">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" role="banner">
+    <div class="container hero-content">
+      <h1>Elevate the Future</h1>
+      <p>
+        Cachelot redefines sperm donation with cutting-edge technology and trust. 
+        Whether you’re a donor ready to impact lives or a fertility clinic seeking elite candidates, 
+        we bridge the gap—seamlessly.
+      </p>
+      <div class="cta-group">
+        <a href="donors.html" class="cta-btn primary-btn">Become a Donor</a>
+        <a href="banks.html" class="cta-btn secondary-btn">Partner with Us</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img src="hero-bg.jpg" alt="" class="hero-bg" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- MISSION / HIGHLIGHTS -->
+  <section class="container highlights" id="mission">
+    <h2>Our Mission</h2>
+    <p>
+      Founded by <strong>Luke Hawash</strong>, Cachelot is transforming sperm donation into a respected, 
+      efficient process. We use data-driven innovation to connect exceptional donors with top fertility banks.
+    </p>
+    <div class="highlight-grid">
+      <article class="highlight-item">
+        <h3>Elite Donors</h3>
+        <p>Our rigorous vetting ensures donors meet top standards in health, education, and reliability.</p>
+      </article>
+      <article class="highlight-item">
+        <h3>Smart Outreach</h3>
+        <p>AI and analytics pinpoint ideal candidates, maximizing reach and precision.</p>
+      </article>
+      <article class="highlight-item">
+        <h3>National Impact</h3>
+        <p>We link donors and banks coast-to-coast, scaling fertility solutions nationwide.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT / BRAND IDENTITY -->
+  <section class="about-section" role="region" aria-labelledby="about-heading">
+    <div class="container">
+      <h2 id="about-heading">Redefining Fertility</h2>
+      <p>
+        Cachelot is building a future where sperm donation is efficient, transparent, and impactful. 
+        Through strategic partnerships and advanced tech, we’re raising the bar for the fertility industry.
+      </p>
+      <a href="register.html" class="cta-btn inline-btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container footer-content">
+      <p>&copy; 2025 Cachelot. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Basic Script for Mobile Nav Toggle -->
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
